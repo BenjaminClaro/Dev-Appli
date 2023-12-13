@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\DiscRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DiscRepository::class)]
@@ -16,138 +14,66 @@ class Disc
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $titre = null;
+    private ?string $title = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $picture = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    private ?string $label = null;
 
-    #[ORM\OneToMany(mappedBy: 'artist', targetEntity: Disc::class)]
-    private Collection $discs;
-
-    #[ORM\OneToMany(mappedBy: 'artist', targetEntity: Atrist::class)]
-    private Collection $atrists;
-
-    #[ORM\Column(length: 255)]
-    private ?string $artist = null;
-
-    #[ORM\ManyToOne(inversedBy: 'disc')]
-    private ?Atrist $atrist = null;
-
-    public function __construct()
-    {
-        $this->discs = new ArrayCollection();
-        $this->atrists = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'discs')]
+    private ?artist $artist = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    public function getTitle(): ?string
     {
-        return $this->titre;
+        return $this->title;
     }
 
-    public function setTitre(string $titre): static
+    public function setTitle(string $title): static
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getPicture(): ?string
     {
-        return $this->image;
+        return $this->picture;
     }
 
-    public function setImage(string $image): static
+    public function setPicture(?string $picture): static
     {
-        $this->image = $image;
+        $this->picture = $picture;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Disc>
-     */
-    public function getDiscs(): Collection
+    public function getLabel(): ?string
     {
-        return $this->discs;
+        return $this->label;
     }
 
-    public function addDisc(Disc $disc): static
+    public function setLabel(string $label): static
     {
-        if (!$this->discs->contains($disc)) {
-            $this->discs->add($disc);
-            $disc->setArtist($this);
-        }
+        $this->label = $label;
 
         return $this;
     }
 
-    public function removeDisc(Disc $disc): static
-    {
-        if ($this->discs->removeElement($disc)) {
-            // set the owning side to null (unless already changed)
-            if ($disc->getArtist() === $this) {
-                $disc->setArtist(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Atrist>
-     */
-    public function getAtrists(): Collection
-    {
-        return $this->atrists;
-    }
-
-    public function addAtrist(Atrist $atrist): static
-    {
-        if (!$this->atrists->contains($atrist)) {
-            $this->atrists->add($atrist);
-            $atrist->setArtist($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAtrist(Atrist $atrist): static
-    {
-        if ($this->atrists->removeElement($atrist)) {
-            // set the owning side to null (unless already changed)
-            if ($atrist->getArtist() === $this) {
-                $atrist->setArtist(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getArtist(): ?string
+    public function getArtist(): ?artist
     {
         return $this->artist;
     }
 
-    public function setArtist(string $artist): static
+    public function setArtist(?artist $artist): static
     {
         $this->artist = $artist;
-
-        return $this;
-    }
-
-    public function getAtrist(): ?Atrist
-    {
-        return $this->atrist;
-    }
-
-    public function setAtrist(?Atrist $atrist): static
-    {
-        $this->atrist = $atrist;
 
         return $this;
     }

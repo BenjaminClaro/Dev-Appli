@@ -365,7 +365,16 @@
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
-    <service id="App\Repository\AtristRepository" class="App\Repository\AtristRepository" autowire="true" autoconfigure="true">
+    <service id="App\DataFixtures\DiscsFixtures" class="App\DataFixtures\DiscsFixtures" autowire="true" autoconfigure="true">
+      <tag name="doctrine.fixture.orm"/>
+    </service>
+    <service id="App\DataFixtures\Jeu1" class="App\DataFixtures\Jeu1" autowire="true" autoconfigure="true">
+      <tag name="doctrine.fixture.orm"/>
+    </service>
+    <service id="App\DataFixtures\record" class="App\DataFixtures\record" autowire="true" autoconfigure="true">
+      <tag name="container.error" message="The autoloader expected class &quot;App\DataFixtures\record&quot; to be defined in file &quot;/home/benjamin/Documents/Dev-Appli/monProjet/vendor/composer/../../src/DataFixtures/record.php&quot;. The file was found but the class was not in it, the class name or namespace probably has a typo."/>
+    </service>
+    <service id="App\Repository\ArtistRepository" class="App\Repository\ArtistRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -4980,7 +4989,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.yfDPN.x"/>
+      <argument type="service" id=".service_locator.QSdkF_p"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -6951,6 +6960,14 @@
             <argument key="fixture" type="service" id="App\DataFixtures\AppFixtures"/>
             <argument key="groups" type="collection"/>
           </argument>
+          <argument type="collection">
+            <argument key="fixture" type="service" id="App\DataFixtures\DiscsFixtures"/>
+            <argument key="groups" type="collection"/>
+          </argument>
+          <argument type="collection">
+            <argument key="fixture" type="service" id="App\DataFixtures\Jeu1"/>
+            <argument key="groups" type="collection"/>
+          </argument>
         </argument>
       </call>
     </service>
@@ -6962,8 +6979,12 @@
     <service id=".abstract.instanceof.App\Controller\AccueilController" class="App\Controller\AccueilController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AtristRepository" class="App\Repository\AtristRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\AtristRepository" class="App\Repository\AtristRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\DiscsFixtures" class="App\DataFixtures\DiscsFixtures" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\DataFixtures\DiscsFixtures" class="App\DataFixtures\DiscsFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\Jeu1" class="App\DataFixtures\Jeu1" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\DataFixtures\Jeu1" class="App\DataFixtures\Jeu1" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ArtistRepository" class="App\Repository\ArtistRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\ArtistRepository" class="App\Repository\ArtistRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\DiscRepository" class="App\Repository\DiscRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\DiscRepository" class="App\Repository\DiscRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.bJ.4HC5" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -7643,10 +7664,10 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.yfDPN.x" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.QSdkF_p" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Repository\AtristRepository" type="service_closure" id="App\Repository\AtristRepository"/>
+        <argument key="App\Repository\ArtistRepository" type="service_closure" id="App\Repository\ArtistRepository"/>
         <argument key="App\Repository\DiscRepository" type="service_closure" id="App\Repository\DiscRepository"/>
       </argument>
     </service>
