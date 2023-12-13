@@ -13,5 +13,5 @@ class Jeu1 extends Fixture
         // $manager->persist($product);
 
         $manager->flush();
-    }
+    } 
 }
