@@ -1,4 +1,13 @@
 <?php
+
+
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+use App\Entity\Artist;
+use App\Entity\Disc;
+
+
+
 /**
  * Export to PHP Array plugin for PHPMyAdmin
  * @version 5.1.1deb5ubuntu1
